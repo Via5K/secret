@@ -45,10 +45,10 @@ app.post("/login", function(req, res) {
         else {
             if (result) {
                 if (result.password === password) {
-                    console.log("Successfull Login!!");
+                    console.log("Successfull Login!!"); //send success msg.
                     res.redirect("/secrets");
                 } else {
-                    console.log("Wrong Password");
+                    console.log("Wrong Password"); //send wrong password msg
                     res.redirect("/");
                 }
             }
@@ -75,16 +75,16 @@ app.post("/register", function(req, res) {
         email: email
     }, function(err, result) {
         if (result.length > 0) { //if the user is already in the database, then display this msg and goto login
-            console.log("User Already in the Database Please Login!!");
+            console.log("User Already in the Database Please Login!!"); //send already registered msg.
             res.redirect("/login");
         } else if (err) { //if there is an error then goto home register page
-            console.log("Some Error Occurred!!");
+            console.log("Some Error Occurred!!"); //send error occured msg.
             res.redirect("/register");
         } else { //and if there was no error and no user then register this user.
             //add into databse...
             user.save((err) => {
                 if (!err) {
-                    console.log("Successfully registered!");
+                    console.log("Successfully registered!"); //send successfully registered and say redirecting...
                     res.render("secrets");
                 } else {
                     console.log(err);
